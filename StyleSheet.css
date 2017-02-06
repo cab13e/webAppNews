@@ -1,2 +1,14 @@
 ﻿body {
 }
+
+#navbar h1{
+    color: darkred;
+}
+
+#navbar a{
+    background-color: peachpuff;
+}
+
+#articles article{
+    background-color: papayawhip;
+}
