@@ -1,6 +1,7 @@
 <html>
 <head>
 <title> Home </title>
+<link href="StyleSheet.css" rel="stylesheet"/>
 </head>
 <body>
 	<header>
