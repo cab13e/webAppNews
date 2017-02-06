@@ -30,33 +30,6 @@ if ($link->connect_errno) {
 *
 ***************************/
 
-
-session_start();
-
-if(isset($_SESSION['use']))   // Checking whether the session is already there 
-                              // If true, then header redirect it to the home page directly 
- {
-    header("Location:home.php"); 
- }
-
-if(isset($_POST['login']))   // it checks whether the user clicked login button or not 
-{
-     $user = $_POST['user'];
-     $pass = $_POST['pass'];
-
-      if($user == "Blee" && $pass == "1234")  // username is  set to "Ank"  and Password   
-         {                                   // is 1234 by default
-            $_SESSION['use']=$user;
-            //  On Successful Login redirects to home.php
-	         echo '<script type="text/javascript"> window.open("home.php","_self");</script>'; 
-          }
-      else
-      {
-	       echo "<h2>Invalid UserName or Password</h2";
-      }
-}
-
-
 $loggedin = false;
 if(isset($_COOKIE["AppName"]))
 {
@@ -80,22 +53,22 @@ if($action == "add_user")
 {
 	$name = $_POST["name"];
 	$password = $_POST["password"];
-	$level = $_POST["level"];
+	$email = $_POST["email"];
 	
 	$name = htmlentities($link->real_escape_string($name));
 	$password = htmlentities($link->real_escape_string($password));
 	$password = crypt ($password,"ilovetacos");
-	$result = $link->query("INSERT INTO users (username, password, level) VALUES ('$name', '$password', '$level')");
+	$result = $link->query("INSERT INTO users (username, email, password) VALUES ('$name', '$email', '$password')");
 	if(!$result)
 		die ('Can\'t query users because: ' . $link->error);
 	else
 		$message = "User Added";
 }
 elseif ($action == "delete_user") {
-	$id = $_POST["id"];
+	//$ = $_POST["id"];
 	$name = $_POST["name"];
-	$id = htmlentities($link->real_escape_string($id));
-	$result = $link->query("DELETE FROM users WHERE id='" . $id . "'");
+	//$id = htmlentities($link->real_escape_string($id));
+	$result = $link->query("DELETE FROM users WHERE username='" . $name . "'");
 	if(!$result)
 		die ('Can\'t query users because: ' . $link->error);
 	else
@@ -133,8 +106,8 @@ elseif ($action == "login") {
 	  {
 		$message = "User $name Logged in!";
 		$cookieValue = crypt($name,"ilovetacos");
-		setcookie("AppName", $name, time()+3600);  /* expire in 1 hour */
-		setcookie($name, $cookieValue, time()+3600);  /* expire in 1 hour */
+		setcookie("AppName", $name, time()+60);  /* expire in 1 hour */
+		setcookie($name, $cookieValue, time()+60);  /* expire in 1 hour */
 		$loggedin = true;
 	  }
 	  else
@@ -209,44 +182,13 @@ elseif ($action == "login") {
 				print "Welcome, ". $_COOKIE["AppName"];
 			else
 				print "Not logged in.";
-				
-			if($message != "")
-				print $message . "<br/><br/>";
-			
-			print "<h3>Users:</h3>";
-			
-			$result = $link->query("SELECT * FROM users");
-			if(!$result)
-				die ('Can\'t query users because: ' . $link->error);
-			else
-			{
-				$i=0;
-				while($row = $result->fetch_assoc()):?>
-					<form method="post" action="login2.php">
-						<input type="hidden" name="id" value="<?php print $row["id"];?>" />
-						<input type="text" name="name" value="<?php print $row["name"];?>" />
-						<input type="hidden" name="action" value="edit_user" />
-						<input type="Submit" value="Update" />
-					</form>
-
-					<form method="post" action="login2.php" name="delete_user<?php print $i; ?>">
-						<input type="hidden" name="id" value="<?php print $row["id"];?>" />
-						<input type="hidden" name="name" value="<?php print $row["name"];?>" />
-						<input type="hidden" name="action" value="delete_user" />
-						<input type="Button" value="Delete" onClick="confirm_delete(<?php print $i; ?>)" />
-					</form>
-
-				<?php 
-				$i++;
-				endwhile;
-			}
-
-			$result->close();
-		?>
+				?>
+			<br/>
+			<br/>
 		Add User: 
 		<form method="post" action="login2.php" name="add_user">
 			Username: <input type="text" name="name" id="add_name" /> <br/>
-			Level: <input type="text" name="level" id="addLevel" /> <br/>
+			Email: <input type="text" name="email" id="email" /> <br/>
 			Password: <input type="text" name="password" id="pass1" /> <br/>
 			Password (again): <input type="text" id="pass2" onKeyUp="check_pass()"/>
 			<input type="hidden" name="action" value="add_user" />
