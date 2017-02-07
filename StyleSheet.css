@@ -7,10 +7,15 @@
 }
 
 #navbar a{
-    background-color: lemonchiffon;
+    background-color: mistyrose;
 }
 
+<<<<<<< HEAD
 article{
     background-color: lemonchiffon;
     height: 40%;
+=======
+#articles article{
+    background-color: mistyrose;
+>>>>>>> 8687c24b4660f25ae91a1ae19184e7d02e856f74
 }
