@@ -176,33 +176,39 @@ elseif ($action == "login") {
 		</script>
 	</head>
 	<body>
-	
-		<h1>Welcome!</h1>
+		
+		<!--<div class="two-thirds1 column" id="main">
+			<h1 id="welcome">Welcome!</h1>
+		</div> <br/>-->
 		<?php
 			if($loggedin)
-				print "Welcome, ". $_COOKIE["AppName"];
+				print '<div class="two-thirds1 column id="main""> <h1 id="welcome">Welcome!</h1> <br/><h3>Welcome, . $_COOKIE["AppName"] </h3></div>';
 			else
-				print "Not logged in.";
+				print '<div class="two-thirds1 column id="main""> <h1 id="welcome">Welcome!</h1> <br/><h3>You are currently not logged in.</h3></div>';
 				?>
 			<br/>
 			<br/>
-		Add User: 
-		<form method="post" action="login2.php" name="add_user">
-			Username: <input type="text" name="name" id="add_name" /> <br/>
-			Email: <input type="text" name="email" id="email" /> <br/>
-			Password: <input type="text" name="password" id="pass1" /> <br/>
-			Password (again): <input type="text" id="pass2" onKeyUp="check_pass()"/>
-			<input type="hidden" name="action" value="add_user" />
-			<input type="Button" value="Go" onClick="validate()" />
-		</form>
 		
-		Login: 
-		<form method="post" action="home.php" name="login">
-			Username: <input type="text" name="name" /> <br/>
-			Password: <input type="text" name="password" /> <br/>
-			<input type="hidden" name="action" value="login" />
-			<input type="Submit" value="Go"/>
-		</form>
+		<div class="two-thirds column" id="main">
+			<legend>Add User</legend> <br/>
+			<form method="post" action="login2.php" name="add_user">
+				Username: <input type="text" name="name" id="add_name" /> <br/>
+				Email: <input type="text" name="email" id="email" /> <br/>
+				Password: <input type="text" name="password" id="pass1" /> <br/>
+				Password (again): <input type="text" id="pass2" onKeyUp="check_pass()"/>
+				<input type="hidden" name="action" value="add_user" /> <br/>
+				<input type="Submit" value="Go" onClick="validate()" />
+			</form>
+		</div>
+		<div class="two-thirds column" id="main">
+			<legend>Login</legend> <br/>
+			<form method="post" action="home.php" name="login">
+				Username: <input type="text" name="name" /> <br/>
+				Password: <input type="text" name="password" /> <br/>
+				<input type="hidden" name="action" value="login" />
+				<input type="Submit" value="Go"/>
+			</form>
+		</div>
 		
 		<br/>
 		
