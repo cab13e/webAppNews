@@ -1,3 +1,13 @@
+<?php
+$link = new mysqli("localhost","root", "", "stories");
+if ($link->connect_errno) 
+{
+    printf("Connect failed: %s\n", $link->connect_error);
+    exit();
+}
+?>
+
+
 <html>
 <head>
 <title> Home </title>
@@ -13,26 +23,19 @@
 		</nav>
 	</header>
 	
- 	<div id="articles" role="main" class="col1" style="width:30%;height:50%;float:left;padding:5px">
-		 <article>
-			 <h2>This article</h2>
-			 <h3 style="text-align:right">Written by Bob on 01/22/2017</h3>
-			 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a porttitor tortor, viverra ornare risus. Sed ullamcorper elementum ante consectetur elementum. Suspendisse potenti. Nullam quis arcu purus. Nulla sed lacus turpis. Praesent et nulla pretium, porttitor erat non, volutpat dui. Sed faucibus convallis nibh, id rhoncus orci auctor ut. Morbi id purus est. Vivamus pellentesque sagittis urna ac ultrices. Fusce consequat a nibh in cursus. Vestibulum imperdiet iaculis nunc, luctus maximus purus lacinia pulvinar. Pellentesque eu diam sapien. Integer at tellus et dui vehicula euismod. Praesent sollicitudin vehicula nunc sed euismod.
-		 </article>
-	</div>
-	<div id="articles" role="main" class="col1" style="width:30%;height:50%;float:left;padding:5px">
-		 <article>
-			 <h2>This article</h2>
-			 <h3 style="text-align:right">Written by Bob on 01/22/2017</h3>
-			 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a porttitor tortor, viverra ornare risus. Sed ullamcorper elementum ante consectetur elementum. Suspendisse potenti. Nullam quis arcu purus. Nulla sed lacus turpis. Praesent et nulla pretium, porttitor erat non, volutpat dui. Sed faucibus convallis nibh, id rhoncus orci auctor ut. Morbi id purus est. Vivamus pellentesque sagittis urna ac ultrices. Fusce consequat a nibh in cursus. Vestibulum imperdiet iaculis nunc, luctus maximus purus lacinia pulvinar. Pellentesque eu diam sapien. Integer at tellus et dui vehicula euismod. Praesent sollicitudin vehicula nunc sed euismod.
-		 </article>
-	</div>
-	<div id="articles" role="main" class="col1" style="width:30%;height:50%;float:left;padding:5px">
-		 <article>
-			 <h2>This article</h2>
-			 <h3 style="text-align:right">Written by Bob on 01/22/2017</h3>
-			 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a porttitor tortor, viverra ornare risus. Sed ullamcorper elementum ante consectetur elementum. Suspendisse potenti. Nullam quis arcu purus. Nulla sed lacus turpis. Praesent et nulla pretium, porttitor erat non, volutpat dui. Sed faucibus convallis nibh, id rhoncus orci auctor ut. Morbi id purus est. Vivamus pellentesque sagittis urna ac ultrices. Fusce consequat a nibh in cursus. Vestibulum imperdiet iaculis nunc, luctus maximus purus lacinia pulvinar. Pellentesque eu diam sapien. Integer at tellus et dui vehicula euismod. Praesent sollicitudin vehicula nunc sed euismod.
-		 </article>
+	<?php
+			 	$result = $link->query("Select * from pending where approved='1' order by 'date' asc");
+				
+				while($row = $result->fetch_array(MYSQLI_ASSOC))
+				{
+					echo("<article><h2>". $row["title"] . "</h2>");
+					echo("<h3>Article By: ". $row["submitted_by"] . "</h3>");
+					echo("<h3>" . $row["date"] . "</h3>");
+					echo("<p>" . $row["story"] . "</p></article>");
+				}	 
+	?>
+		
+				
 	</div>
 </body>
 </html>

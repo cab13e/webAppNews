@@ -106,8 +106,8 @@ elseif ($action == "login") {
 	  {
 		$message = "User $name Logged in!";
 		$cookieValue = crypt($name,"ilovetacos");
-		setcookie("AppName", $name, time()+60);  /* expire in 1 hour */
-		setcookie($name, $cookieValue, time()+60);  /* expire in 1 hour */
+		setcookie("AppName", $name, time()+3600);  /* expire in 1 hour */
+		setcookie($name, $cookieValue, time()+3600);  /* expire in 1 hour */
 		$loggedin = true;
 	  }
 	  else
@@ -123,6 +123,7 @@ elseif ($action == "login") {
 <html>
 	<head>
 		<title>Welcome</title>
+		<link href="StyleSheet.css" rel="stylesheet"/>
 		<script>
 			function validate()
 			{
