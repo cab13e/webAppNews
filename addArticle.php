@@ -58,20 +58,22 @@ if($action == "addArticle")
      <header>
 		
 		<nav id="navbar">
-			<h1>Welcome!</h1>
-			<a style="text-align:left;position:relative;padding-right: 10px;" href="home.php">Home</a>
-			<a style="text-align:right;position:relative;" class="pull-right" href="logout.php">Logout</a>
+			<div class="two-thirds1 column" id="main">
+				<legend>Welcome!</legend>
+				<a style="text-align:left;position:relative;padding-right: 10px;" href="home.php">Home</a>
+				<a style="text-align:right;position:relative;" class="pull-right" href="logout.php">Logout</a>
+			</div>
 		</nav>
 	</header>
-        <div style="text-align: center;">
+       <div class="two-thirds1 column" id="main">
             <h2>Add an article: </h2>
             <form method="POST" action="home.php" name="addArticle">
                 Title: <input type="text" name="title" id="title" /> <br/>
                 Author: <input type="text" name="submitted_by" id="submitted_by" /> <br/>
                 <label for="content" class="col-sm-2 control-label">Content: </label> <br/>
                 <textarea rows="5" name="story" id="story"></textarea>
-                <input type="hidden" name="action" value="addArticle" />
-                <input type="button" value="Go" onClick="confirm" />
+                <input type="hidden" name="action" value="addArticle" /> 
+                <input type="Submit" value="Go" onClick="confirm" />
             </form>
         </div>
 

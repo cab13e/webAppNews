@@ -19,9 +19,10 @@ if ($link->connect_errno)
 		<nav id="navbar">
 			<div class="two-thirds1 column" id="main">
 				<h1 id="welcome">Welcome!</h1>
+				<a style="text-align:left;position:relative;padding-right: 10px;" href="addArticle.php"><h3 id="linker">Add an article</h3></a>
+				<a style="text-align:right;position:relative;" class="pull-right" href="logout.php"><h3 id="linker">Logout<h3></a> <br/>
 			</div> <br/>
-			<a style="text-align:left;position:relative;padding-right: 10px;" href="addArticle.php"><h3 id="linker">Add an article</h3></a>
-			<a style="text-align:right;position:relative;" class="pull-right" href="logout.php"><h3 id="linker">Logout<h3></a> <br/>
+			
 		</nav>
 	</header>
 	
