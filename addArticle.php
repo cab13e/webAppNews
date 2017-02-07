@@ -1,7 +1,6 @@
 <?php
 $link = new mysqli("localhost","root", "", "stories");
 
-
 if ($link->connect_errno) {
     printf("Connect failed: %s\n", $link->connect_error);
     exit();
@@ -11,18 +10,6 @@ if ($link->connect_errno) {
 * Database interactions
 *
 ***************************/
-
-$loggedin = false;
-if(isset($_COOKIE["AppName"]))
-{
-	$name = $_COOKIE["AppName"];
-	$cryptedCookie = $_COOKIE[$name];
-	$cryptedName = crypt($name,"ilovetacos");
-	if($cryptedCookie == $cryptedName)
-		$loggedin = true;
-}
-else
-	$action = "none";
 
 if(isset($_REQUEST["action"]))
 	$action = $_REQUEST["action"];
@@ -41,7 +28,11 @@ if($action == "addArticle")
     $approved = 0;
 
     $result = $link->query("INSERT INTO pending (title, date, story, submitted_by, approved_by, approved) VALUES ('$title', '$date', '$story', '$author', '$approvedby', '$approved')");
-}
+    if(!$result)
+    {
+		die ('Can\'t query pending because: ' . $link->error);
+        echo "<h2> try again </h2>";
+    }
 
 
 ?>
@@ -67,13 +58,18 @@ if($action == "addArticle")
 	</header>
        <div class="two-thirds1 column" id="main">
             <h2>Add an article: </h2>
-            <form method="POST" action="home.php" name="addArticle">
+            <form method="post" action="addArticle.php" name="addArticle">
                 Title: <input type="text" name="title" id="title" /> <br/>
                 Author: <input type="text" name="submitted_by" id="submitted_by" /> <br/>
                 <label for="content" class="col-sm-2 control-label">Content: </label> <br/>
                 <textarea rows="5" name="story" id="story"></textarea>
+<<<<<<< HEAD
                 <input type="hidden" name="action" value="addArticle" /> 
                 <input type="Submit" value="Go" onClick="confirm" />
+=======
+                <input type="hidden" name="action" value="addArticle" />
+                <input type="Submit" value="Submit" />
+>>>>>>> origin/master
             </form>
         </div>
 
