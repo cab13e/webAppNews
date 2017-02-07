@@ -17,9 +17,11 @@ if ($link->connect_errno)
 	<header>
 		
 		<nav id="navbar">
-			<h1>Welcome!</h1>
-			<a style="text-align:left;position:relative;padding-right: 10px;" href="addArticle.php">Add an article</a>
-			<a style="text-align:right;position:relative;" class="pull-right" href="logout.php">Logout</a>
+			<div class="two-thirds1 column" id="main">
+				<h1 id="welcome">Welcome!</h1>
+			</div> <br/>
+			<a style="text-align:left;position:relative;padding-right: 10px;" href="addArticle.php"><h3 id="linker">Add an article</h3></a>
+			<a style="text-align:right;position:relative;" class="pull-right" href="logout.php"><h3 id="linker">Logout<h3></a> <br/>
 		</nav>
 	</header>
 	
@@ -28,10 +30,10 @@ if ($link->connect_errno)
 				
 				while($row = $result->fetch_array(MYSQLI_ASSOC))
 				{
-					echo("<article><h2>". $row["title"] . "</h2>");
-					echo("<h3>Article By: ". $row["submitted_by"] . "</h3>");
-					echo("<h3>" . $row["date"] . "</h3>");
-					echo("<p>" . $row["story"] . "</p></article>");
+					echo("<div class='t-thirds1 column' id='main'><legend>". $row["title"] . "</legend>");
+					echo("<h4>Article By: ". $row["submitted_by"] . "</h4>");
+					echo("<h5>" . $row["date"] . "</h5>");
+					echo("<p>" . $row["story"] . "</p></div>");
 				}	 
 	?>
 		

@@ -27,9 +27,25 @@ form {
   color: #fff;
   overflow: hidden;}
 
+.t-thirds1 {
+  background-color: mediumseagreen;
+  border: 12px solid #fff;
+ 
+  padding: 10px;
+  margin: 10px;
+  color: #fff;
+  overflow: hidden;}
+
 #thing{
     padding:10px;
     margin:10px;
+
+}
+
+#linker{
+    padding:10px;
+    margin:10px;
+    float: left;
 
 }
 
@@ -67,17 +83,14 @@ p.intro {margin: 2em;}
     color:white;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-article{
+/*article {
     background-color: lemonchiffon;
     height: 40%;
-=======
+}*/
 #articles article{
     background-color: mistyrose;
->>>>>>> 8687c24b4660f25ae91a1ae19184e7d02e856f74
+
 }
-=======
 
 /* FORM STYLES */
 legend {
@@ -178,4 +191,4 @@ textarea + span.error, #bio-count {margin: 0;}
 /* needed to override default style sheet of number polyfill */
 div.number-spin-btn-container {
   margin-bottom: 1.6em !important; }
->>>>>>> origin/master
+
